@@ -10,7 +10,7 @@ import 'rxjs/add/operator/mergeMap';
 	templateUrl: './building-list.page.component.html'
 })
 export class BuildingListPageComponent implements OnInit, OnDestroy {
-	@ViewChild(DialogComponent) private dialog: DialogComponent;
+	@ViewChild(DialogComponent) dialog: DialogComponent;
 
 	buildings: IBuildingModel[];
 

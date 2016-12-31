@@ -13,7 +13,7 @@ export class HttpService extends Http {
 	}
 
 	private getApiUrl(url: string): string {
-		return (startsWith(url, 'http://') || startsWith(url, 'https://')) ? url : `${API_URL}${url}`;
+		return (startsWith(url, 'http://') || startsWith(url, 'https://')) ? url : `${'api url'}${url}`;
 	}
 
 	request(request: string|Request, options?: RequestOptionsArgs): Observable<Response> {

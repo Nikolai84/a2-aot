@@ -10,7 +10,7 @@ import {UnitService} from '../model_service/unit.service';
 })
 export class BuildingItemPageComponent implements OnInit {
 
-	@ViewChild(DialogComponent) private dialog: DialogComponent;
+	@ViewChild(DialogComponent) dialog: DialogComponent;
 
 	units: UnitModel[];
 

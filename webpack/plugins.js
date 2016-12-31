@@ -12,19 +12,19 @@ module.exports = [
     /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
     path.join(process.cwd(), 'src')
   ),
-	new webpack.optimize.UglifyJsPlugin({ compress: {
-		screw_ie8: true,
-		warnings: false,
-		conditionals: true,
-		unused: true,
-		comparisons: true,
-		sequences: true,
-		dead_code: true,
-		evaluate: true,
-		if_return: true,
-		join_vars: true,
-		negate_iife: false // we need this for lazy v8
-	}, sourceMap: true, mangle: { keep_fnames: true }}),
+	// new webpack.optimize.UglifyJsPlugin({ compress: {
+	// 	screw_ie8: true,
+	// 	warnings: false,
+	// 	conditionals: true,
+	// 	unused: true,
+	// 	comparisons: true,
+	// 	sequences: true,
+	// 	dead_code: true,
+	// 	evaluate: true,
+	// 	if_return: true,
+	// 	join_vars: true,
+	// 	negate_iife: false // we need this for lazy v8
+	// }, sourceMap: true, mangle: { keep_fnames: true }}),
 
   new CopyWebpackPlugin([
 		{ from: 'index.html' },

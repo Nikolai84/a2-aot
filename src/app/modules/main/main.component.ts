@@ -1,5 +1,3 @@
-/// <reference path="../modules/property/property.module.d.ts" />
-
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
@@ -9,11 +7,11 @@ import * as moment from 'moment-timezone';
 
 
 @Component({
-  selector: 'hello-world-app',
-  templateUrl: 'hello-world.template.html',
-  styleUrls: ['hello-world.style.css']
+  selector: 'app',
+  templateUrl: 'main.template.html',
+  styleUrls: ['main.style.css']
 })
-export class HelloWorldComponent {
+export class MainComponent {
   constructor() {
     console.log(Router);
     console.log(Observable);

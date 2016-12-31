@@ -40,6 +40,6 @@
   },
   "angularCompilerOptions": {
     "genDir": "aot",
-    "entryModule": "src/app/modules/main.module#MainModule"
+    "entryModule": "src/app/modules/main/main.module#MainModule"
   }
 }

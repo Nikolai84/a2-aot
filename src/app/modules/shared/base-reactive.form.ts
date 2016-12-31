@@ -2,6 +2,7 @@ import {
 	Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter
 } from '@angular/core';
 import {FormGroup, FormBuilder} from '@angular/forms';
+import {Router} from '@angular/router';
 
 // @Component({
 // 	selector: 'hsp-form',
@@ -30,7 +31,7 @@ export  class BaseReactiveForm<Model> implements OnInit {
 
 	groupValidators() { return {} };
 
-	onSubmit() {
+	onSubmit($event) {
 		Object.assign(this.dataModel, this.form.value);
 		this.onSaveModel.emit(this.dataModel);
 	}
