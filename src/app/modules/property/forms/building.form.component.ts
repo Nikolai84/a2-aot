@@ -1,9 +1,10 @@
 import {Component } from '@angular/core';
 import {BaseReactiveForm} from '../../shared/base-reactive.form';
 import IBuildingModel = hsp.property.IBuildingModel;
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, Validators, FormControl, FormGroup} from '@angular/forms';
 import {BuildingModel} from '../models/building.model';
 import {Router} from '@angular/router';
+
 
 @Component({
 	selector: 'hsp-form-building',
@@ -16,16 +17,16 @@ export class BuildingFormComponent extends BaseReactiveForm<IBuildingModel> {
 		this.model = new BuildingModel();
 	}
 
-	// controlConfig() {
-	// 	return {
-	// 		address: [this.dataModel.address, Validators.required ],
-	// 		type: [this.dataModel.buildingType, Validators.required],
-	// 	};
-	// }
-	//
-	// groupValidators() {
-	// 	return null;
-	// }
+	controlConfig(): any {
+		return {
+			address: [this.dataModel.address, Validators.required ],
+			buildingType: [this.dataModel.buildingType, Validators.required],
+		};
+	}
+
+	groupValidators(): any {
+		return null;
+	}
 
 	formErrors = {
 		fields : {

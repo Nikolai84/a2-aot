@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, Validators, FormControl, FormGroup} from '@angular/forms';
 import {BaseReactiveForm} from '../../shared/base-reactive.form';
 import {UnitModel} from '../models/unit.model';
 import IUnitModel = hsp.property.IUnitModel;
@@ -30,14 +30,14 @@ export class UnitFormComponent extends BaseReactiveForm<IUnitModel> {
 		this.model = new UnitModel();
 	}
 
-	// controlConfig() {
-	// 	return {
-	// 		name: [ this.dataModel.name, Validators.required ],
-	// 	};
-	// }
-	//
-	// groupValidators() {
-	// 	return null;
-	// }
+	controlConfig(): any {
+		return {
+			name: [ this.dataModel.name, Validators.required ],
+		};
+	}
+
+	groupValidators(): any {
+		return null;
+	}
 
 }

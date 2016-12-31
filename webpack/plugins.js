@@ -6,6 +6,10 @@ let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let path = require('path');
 
 module.exports = [
+	new webpack.DefinePlugin({
+		// Environment helpers
+		'API_URL': JSON.stringify('http://some_url')
+	}),
   new webpack.ProgressPlugin(),
   new webpack.ContextReplacementPlugin(
     // The (\\|\/) piece accounts for path separators in *nix and Windows

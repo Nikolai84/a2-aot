@@ -14,6 +14,7 @@ export class BuildingsResolver implements Resolve<IBuildingModel[]> {
 	resolve(): Observable<IBuildingModel[]> {
 		return this.buildingService.getBuildings()
 			.catch(err => {
+				console.log('e', err);
 				this.router.navigate(['/']); // @TODO error notification ... maybe)
 				return [err];
 			});
