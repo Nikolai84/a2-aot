@@ -12,8 +12,8 @@ export { HelloWorldComponent };
   declarations: [HelloWorldComponent],
   imports: [
     BrowserModule,
-    CoreModule.forRoot({userName: 'test'}),
-    PropertyModule
+    CoreModule.forRoot({userName: 'test'})
+    // PropertyModule
   ],
   providers: []
 })

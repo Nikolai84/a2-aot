@@ -32,13 +32,13 @@ module.exports = {
         loader: 'css-loader'
       })
     },
-	  {
-		  test: /\.(scss|sass)$/,
-		  exclude: path.resolve(process.cwd(), 'src', 'app'),
-		  loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'sass-loader']})
-	  },
-	  // all css required in src/app files will be merged in js files
-	  {test: /\.(scss|sass)$/, exclude: path.resolve(process.cwd(), 'src', 'style'), loader: 'raw-loader!postcss-loader!sass-loader'}
+	  // {
+		 //  test: /\.(scss|sass)$/,
+		 //  exclude: path.resolve(process.cwd(), 'src', 'app'),
+		 //  loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'sass-loader']})
+	  // },
+	  // // all css required in src/app files will be merged in js files
+	  // {test: /\.(scss|sass)$/, exclude: path.resolve(process.cwd(), 'src', 'style'), loader: 'raw-loader!postcss-loader!sass-loader'}
 
   ]
 };

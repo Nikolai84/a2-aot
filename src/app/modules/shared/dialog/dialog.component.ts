@@ -7,7 +7,7 @@ import {ParentDialogComponent} from './parent-dialog-component';
 @Component({
   selector: 'hsp-dialog',
   templateUrl: './dialog.component.html',
-  // styleUrls: ['./dialog.scss'],
+  styleUrls: ['./dialog.css'],
   providers: [{ provide: ParentDialogComponent, useExisting: forwardRef(() => DialogComponent) }]
 
 })

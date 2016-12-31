@@ -11,7 +11,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "outDir": "./build",
-    "rootDir": "./src/app",
+    "rootDir": ".",
     "skipLibCheck": true,
     "typeRoots": [ "./node_modules/@types" ],
     "types": [
@@ -26,8 +26,10 @@
   "buildOnSave": false,
   "exclude": [
     "node_modules",
+    "aot",
     "dist",
     "**/*.ngfactory.ts",
+    "**/*.ngstyle.ts",
     "**/*.shim.ts",
     "src/app/main*.ts",
     "src/app/polyfill.ts"
@@ -37,7 +39,7 @@
     "useWebpackText": true
   },
   "angularCompilerOptions": {
-    "genDir": ".",
+    "genDir": "aot",
     "entryModule": "src/app/modules/main.module#MainModule"
   }
 }

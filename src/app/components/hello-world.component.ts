@@ -11,7 +11,7 @@ import * as moment from 'moment-timezone';
 @Component({
   selector: 'hello-world-app',
   templateUrl: 'hello-world.template.html',
-  // styleUrls: ['hello-world.style.scss']
+  styleUrls: ['hello-world.style.css']
 })
 export class HelloWorldComponent {
   constructor() {
