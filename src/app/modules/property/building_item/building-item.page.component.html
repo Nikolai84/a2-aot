@@ -1,0 +1,8 @@
+<button (click)="dialog.show()">Add Unit!</button>
+<p>Building Details</p>
+<hsp-dialog #dialog>
+  <hsp-form-unit (onSaveModel)="saveModel($event)"></hsp-form-unit>
+</hsp-dialog>
+<h4>Units in Building</h4>
+<ul><li *ngFor="let unit of units">{{ unit.name }}
+</li></ul>

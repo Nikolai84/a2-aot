@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <input formControlName="address" id="building-address" type="text" placeholder="Address"/>
+  <select formControlName="type" id="building-type">
+      <option value="" [disabled]="true" [selected]="true">Select building type</option>
+      <option value="SINGLE">Single</option>
+      <option value="MULTI">Multi</option></select>
+ <button type="submit" [disabled]="!isValidToSubmit()">save</button></form>
+<div class="errors" *ngIf="hasErrors()">{{ showAllErrors() }}</div>

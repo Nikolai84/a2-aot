@@ -1,0 +1,7 @@
+<button (click)="dialog.show()">Add Building</button>
+<ul><li *ngFor="let building of buildings">
+    <a [routerLink]="[building.id]">{{ building.address }}</a></li>
+</ul>
+<hsp-dialog #dialog>
+    <hsp-form-building (onSaveModel)="saveModel($event)"></hsp-form-building>
+</hsp-dialog>

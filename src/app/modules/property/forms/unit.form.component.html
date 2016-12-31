@@ -1,0 +1,4 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <input formControlName="name" id="unit-name" type="text" placeholder="Description"/>
+    <button type="submit" [disabled]="!isValidToSubmit()">save
+</button></form><div class="errors" *ngIf="hasErrors()">{{ showAllErrors() }}</div>
