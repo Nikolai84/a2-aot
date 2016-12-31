@@ -1,3 +1,5 @@
+/// <reference path="./main.d.ts" />
+
 import { platformBrowser } from '@angular/platform-browser';
 import { MainModuleNgFactory } from './modules/main.module.ngfactory';
 
