@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import  'rxjs/add/operator/mergeMap';
 import {get} from 'lodash';
 import * as moment from 'moment-timezone';
-
+import '../../../style/app.css';
 
 @Component({
   selector: 'app',

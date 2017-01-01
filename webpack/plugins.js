@@ -3,6 +3,10 @@
 let webpack = require('webpack');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+
+
 let path = require('path');
 let ENV = process.env.npm_lifecycle_event;
 let envMap =
@@ -46,6 +50,26 @@ module.exports = [
 	// 	join_vars: true,
 	// 	negate_iife: false // we need this for lazy v8
 	// }, sourceMap: true, mangle: { keep_fnames: true }}),
+	// new CommonsChunkPlugin({
+	// 	name: ['vendor', 'polyfills']
+	// }),
+
+	// Inject script and link tags into html files
+	// Reference: https://github.com/ampedandwired/html-webpack-plugin
+	new HtmlWebpackPlugin({
+		template: './public/index.html',
+		chunksSortMode:  function (a, b) {  //alphabetical order - reverse
+			if (a.names[0] < b.names[0]) {
+				return 1;
+			}
+			if (a.names[0] > b.names[0]) {
+				return -1;
+			}
+			return 0;
+		}
+	}),
+
+	new ExtractTextPlugin({filename: 'css/[name].[hash].css', disable: false}), // disable if is prod
 
   new CopyWebpackPlugin([{
 	  // Copy assets from the public folder
