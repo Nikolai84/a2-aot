@@ -4,11 +4,28 @@ let webpack = require('webpack');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let path = require('path');
-
+let ENV = process.env.npm_lifecycle_event;
+let envMap =
+	{
+		'start': {
+				API_URL: 'http://dev.url'
+    },
+		'build-prod': {
+			API_URL: 'http://prod.url'
+		},
+		'build-stage': {
+			API_URL: 'http://stage.url'
+		},
+		'build': {
+			API_URL: 'http://prod.url'
+		}
+};
+const ENV_CONFIG = envMap[ENV] || envMap['start'];
+console.log(path.join(process.cwd(), 'src', 'public'));
 module.exports = [
 	new webpack.DefinePlugin({
 		// Environment helpers
-		'API_URL': JSON.stringify('http://some_url')
+		'API_URL': JSON.stringify(ENV_CONFIG.API_URL)
 	}),
   new webpack.ProgressPlugin(),
   new webpack.ContextReplacementPlugin(
@@ -30,18 +47,10 @@ module.exports = [
 	// 	negate_iife: false // we need this for lazy v8
 	// }, sourceMap: true, mangle: { keep_fnames: true }}),
 
-  new CopyWebpackPlugin([
-		{ from: 'index.html' },
-		{ from: 'favicon.ico' },
+  new CopyWebpackPlugin([{
 	  // Copy assets from the public folder
 	  // Reference: https://github.com/kevlened/copy-webpack-plugin
-    { from: 'public', to: 'public' }
-	]),
-  new ExtractTextPlugin('style.bundle.css')
+	  from: path.join(process.cwd(), 'src', 'public')
+  }
+	])
 ];
-
-// Helper functions
-function root(args) {
-	args = Array.prototype.slice.call(arguments, 0);
-	return path.join.apply(path, [__dirname].concat(args));
-}

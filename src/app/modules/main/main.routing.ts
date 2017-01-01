@@ -1,5 +1,4 @@
 import { RouterModule, Routes } from '@angular/router';
-import {MainComponent} from './main.component';
 import {NgModule} from '@angular/core';
 import {HomePageComponent} from '../../root_components/home.component';
 

@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
@@ -7,11 +8,11 @@ import * as moment from 'moment-timezone';
 
 
 @Component({
-  selector: 'main-app',
-  templateUrl: 'main.template.html',
-  styleUrls: ['main.style.css']
+  selector: 'app',
+  templateUrl: 'app.template.html',
+  styleUrls: ['app.style.css']
 })
-export class MainComponent {
+export class AppComponent {
   constructor() {
     console.log('Main component construct');
     // console.log(Router);

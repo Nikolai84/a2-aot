@@ -10,7 +10,9 @@
     "serve": "http-server ./dist -a 0.0.0.0 -p 9000",
     "start": "npm run cleanup && npm run ngc && concurrently -r \"webpack-dev-server --config webpack.aot.config.js\" \"node ./bin/ngc-watch.js\"",
     "start-prod": "npm run ngc && npm run build && npm run serve",
-    "build": "npm run cleanup && npm run ngc && webpack --config webpack.aot.config.js -p",
+    "build-prod": "npm run cleanup && npm run ngc && webpack --config webpack.aot.config.js -p",
+    "build-stage": "npm run build-prod",
+    "build": "npm run build-prod",
     "deploy": "gh-pages -d dist",
     "aot": "npm run cleanup && npm run ngc && concurrently -r \"webpack-dev-server --config webpack.aot.config.js\" \"node ./bin/ngc-watch.js\"",
     "jit": "npm run cleanup && webpack-dev-server --config webpack.jit.config.js"
@@ -20,7 +22,6 @@
     "aot",
     "typescript"
   ],
-
   "license": "ISC",
   "dependencies": {
     "@angular/common": "2.4.1",
@@ -36,6 +37,8 @@
   "devDependencies": {
     "@angular/compiler-cli": "2.4.1",
     "@angular/platform-server": "2.4.1",
+    "@types/lodash": "^4.14.45",
+    "@types/moment-timezone": "^0.2.33",
     "@types/node": "6.0.53",
     "angular-in-memory-web-api": "^0.2.3",
     "angular2-template-loader": "0.6.0",

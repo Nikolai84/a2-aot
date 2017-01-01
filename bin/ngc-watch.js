@@ -12,7 +12,7 @@ let ngcCommand = 'ngc -p ./tsconfig.aot.json';
 let fullCommand = binPath.trim() + '/' + ngcCommand;
 
 chokidar.watch(
-  ['src/app/**/*.component.ts', 'src/app/**/*.template.html', 'src/app/**/*.style.css'],
+  ['src/app/**/*.component.ts', 'src/app/**/*.html', 'src/app/**/*.css'],
   { ignoreInitial: true }
 ).on('all', () => {
   console.log(`> ${ngcCommand}`);

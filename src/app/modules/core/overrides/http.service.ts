@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {startsWith} from 'lodash';
+import {ENV_VARS} from '../../main/env_vars';
 
 @Injectable()
 export class HttpService extends Http {
@@ -13,7 +14,7 @@ export class HttpService extends Http {
 	}
 
 	private getApiUrl(url: string): string {
-		return (startsWith(url, 'http://') || startsWith(url, 'https://')) ? url : `${'http://test'}${url}`;
+		return (startsWith(url, 'http://') || startsWith(url, 'https://')) ? url : `${ENV_VARS.API_URL}${url}`;
 	}
 
 	request(request: string|Request, options?: RequestOptionsArgs): Observable<Response> {
