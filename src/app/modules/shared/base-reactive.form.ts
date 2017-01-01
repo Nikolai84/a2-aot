@@ -4,12 +4,7 @@ import {
 import {FormGroup, FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
 
-// @Component({
-// 	selector: 'hsp-form',
-// 	template: '',
-// 	changeDetection: ChangeDetectionStrategy.OnPush
-// })
-export  class BaseReactiveForm<Model> implements OnInit {
+export abstract class BaseReactiveForm<Model> implements OnInit {
 
 	@Input() set model(model) {
 		this.setModel(model);
@@ -27,9 +22,9 @@ export  class BaseReactiveForm<Model> implements OnInit {
 		this.buildForm();
 	}
 
-	controlConfig() { return {} };
+	abstract controlConfig();
 
-	groupValidators() { return {} };
+	abstract groupValidators();
 
 	onSubmit($event) {
 		Object.assign(this.dataModel, this.form.value);

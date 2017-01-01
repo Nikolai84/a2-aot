@@ -2,6 +2,7 @@
 
 let path = require('path');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
+console.log('path!!',  path.resolve(process.cwd(), 'src', 'app'));
 
 module.exports = {
   rules: [
@@ -32,13 +33,15 @@ module.exports = {
         loader: 'css-loader'
       })
     },
-	  // {
-		 //  test: /\.(scss|sass)$/,
-		 //  exclude: path.resolve(process.cwd(), 'src', 'app'),
-		 //  loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'sass-loader']})
-	  // },
+	  {
+		  test: /\.(scss|sass)$/,
+		  exclude: path.resolve(process.cwd(), 'src', 'app'),
+		  loader:  ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'sass-loader']})
+	  },
+
 	  // // all css required in src/app files will be merged in js files
-	  // {test: /\.(scss|sass)$/, exclude: path.resolve(process.cwd(), 'src', 'style'), loader: 'raw-loader!postcss-loader!sass-loader'}
+	  // @TODO postcss loader to minify css in js files
+	  {test: /\.(scss|sass)$/, exclude: path.resolve(process.cwd(), 'src', 'style'), loader: 'raw-loader!postcss-loader!sass-loader'}
 
   ]
 };
