@@ -1,14 +1,13 @@
 import {Component} from '@angular/core';
-import {FormBuilder, Validators, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import {BaseReactiveForm} from '../../shared/base-reactive.form';
 import {UnitModel} from '../models/unit.model';
 import IUnitModel = hsp.property.IUnitModel;
-import {Router} from '@angular/router';
 
 
 @Component({
 	selector: 'hsp-form-unit',
-	templateUrl: './unit.form.component.html'
+	templateUrl: 'unit.form.template.html'
 })
 export class UnitFormComponent extends BaseReactiveForm<IUnitModel> {
 
@@ -30,13 +29,13 @@ export class UnitFormComponent extends BaseReactiveForm<IUnitModel> {
 		this.model = new UnitModel();
 	}
 
-	controlConfig(): any {
+	controlConfig(): Object {
 		return {
 			name: [ this.dataModel.name, Validators.required ],
 		};
 	}
 
-	groupValidators(): any {
+	groupValidators(): Object | null {
 		return null;
 	}
 

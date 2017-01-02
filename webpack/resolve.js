@@ -7,5 +7,5 @@ module.exports = {
     'node_modules',
     path.resolve(process.cwd(), 'src')
   ],
-  extensions: ['.ts', '.js']
+  extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html']
 };

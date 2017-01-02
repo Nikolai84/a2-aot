@@ -15,7 +15,7 @@
     "skipLibCheck": true,
     "typeRoots": [ "./node_modules/@types" ],
     "types": [
-      "node", "lodash", "moment-timezone"
+      "node", "lodash", "moment-timezone", "jquery"
     ],
     "lib": [
       "dom",

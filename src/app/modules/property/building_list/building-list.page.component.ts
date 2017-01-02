@@ -7,7 +7,7 @@ import {DialogComponent} from '../../shared/dialog/dialog.component';
 import 'rxjs/add/operator/mergeMap';
 
 @Component({
-	templateUrl: './building-list.page.component.html'
+	templateUrl: 'building-list.page.template.html'
 })
 export class BuildingListPageComponent implements OnInit, OnDestroy {
 	@ViewChild(DialogComponent) dialog: DialogComponent;

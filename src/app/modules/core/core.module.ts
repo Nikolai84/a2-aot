@@ -7,18 +7,14 @@ import {ApiService} from './api.service';
 import {requestOptionsProvider} from './overrides/default-request-options.service';
 import {HttpService} from './overrides/http.service';
 import {XHRBackend, RequestOptions} from '@angular/http';
-import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {MockData} from '../../mock_data/mock-data';
-import {ENV_VARS} from '../main/env_vars';
 
 export function useFactory (backend: XHRBackend, options: RequestOptions) {
 	return new HttpService(backend, options);
-};
+}
 
 @NgModule({
 	imports: [
-		CommonModule, // @TODO can't export API_URL error on path resolving while compiling
-		InMemoryWebApiModule.forRoot(MockData, {delay: 100, host: 'http://prod.url', apiBase: '/'}),
+		CommonModule // @TODO can't export API_URL error on path resolving while compiling
 	],
 	providers: [
 		UserService,

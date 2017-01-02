@@ -2,14 +2,19 @@
 
 let path = require('path');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
-console.log('path!!',  path.resolve(process.cwd(), 'src', 'app'));
-
+// @TODO set env check e.g use tslint loader when not test env
 module.exports = {
   rules: [
     {
       test: /\.ts$/,
       use: ['awesome-typescript-loader', 'angular2-template-loader']
     },
+	  {
+		  test: /\.ts$/,
+		  exclude: /\.ngfactory\.ts$/,
+		  enforce: 'pre',
+		  loader: 'tslint-loader'
+	  },
     {
       test: /\.html$/,
       use: 'raw-loader'

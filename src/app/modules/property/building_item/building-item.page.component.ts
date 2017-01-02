@@ -6,7 +6,7 @@ import {UnitService} from '../model_service/unit.service';
 
 
 @Component({
-	templateUrl: './building-item.page.component.html'
+	templateUrl: 'building-item.page.template.html'
 })
 export class BuildingItemPageComponent implements OnInit {
 

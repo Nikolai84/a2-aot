@@ -1,8 +1,7 @@
 import {
-	Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter
+	OnInit, Input, Output, EventEmitter
 } from '@angular/core';
 import {FormGroup, FormBuilder} from '@angular/forms';
-import {Router} from '@angular/router';
 
 export abstract class BaseReactiveForm<Model> implements OnInit {
 
@@ -22,11 +21,12 @@ export abstract class BaseReactiveForm<Model> implements OnInit {
 		this.buildForm();
 	}
 
-	abstract controlConfig();
+	abstract controlConfig(): Object;
 
-	abstract groupValidators();
+	abstract groupValidators(): Object | null;
 
-	onSubmit($event) {
+	onSubmit($event) { // aot specific if in template $event is passed it should be used as arg
+		($event);
 		Object.assign(this.dataModel, this.form.value);
 		this.onSaveModel.emit(this.dataModel);
 	}
