@@ -1,4 +1,7 @@
-import {camelCase, isObject, isArray, snakeCase} from 'lodash';
+import camelCase from 'lodash/camelCase'; // allowSyntheticDefaultImports = true needed for rollup
+import isObject from 'lodash/isObject';
+import snakeCase from 'lodash/snakeCase';
+import isArray from 'lodash/isArray';
 
 function transformProps(data: Object, propTransformer: Function = camelCase) {
 	let camelCasedData = {};

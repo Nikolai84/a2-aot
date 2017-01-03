@@ -1,7 +1,7 @@
 {
   "name": "angular2-aot-webpack",
   "version": "1.0.0",
-  "description": "Angular 2 AOT (Ahead Of Time) offline compilation example with Webpack",
+  "description": "Angular 2 AOT (Ahead Of Time)",
   "main": "build/modules/main.module.js",
   "scripts": {
     "cleanup": "rimraf src/app/**/*.ngfactory.ts src/app/**/*.ngstyle.ts src/app/**/*.ngsummary.json build dist",
@@ -29,6 +29,8 @@
     "@angular/core": "2.4.1",
     "@angular/platform-browser": "2.4.1",
     "@angular/platform-browser-dynamic": "2.4.1",
+    "@angular/forms": "2.4.1",
+    "@angular/http": "2.4.1",
     "@angular/router": "3.4.1",
     "core-js": "2.4.1",
     "jquery": "^3.1.1",
@@ -49,6 +51,7 @@
     "autoprefixer": "^6.6.0",
     "awesome-typescript-loader": "3.0.0-beta.17",
     "chokidar": "1.6.1",
+    "compression-webpack-plugin": "^0.3.2",
     "concurrently": "3.1.0",
     "copy-webpack-plugin": "4.0.1",
     "css-loader": "0.26.1",
@@ -58,6 +61,7 @@
     "gh-pages": "0.12.0",
     "html-webpack-plugin": "^2.25.0",
     "http-server": "0.9.0",
+    "json-loader": "^0.5.4",
     "node-sass": "^4.1.1",
     "postcss-assets-webpack-plugin": "^1.0.0",
     "postcss-loader": "^1.2.1",

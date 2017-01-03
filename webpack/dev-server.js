@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-  contentBase: './src',
-  port: 9000,
+  contentBase: './src/public',
+  port: 8080,
   inline: true,
   historyApiFallback: true,
   stats: 'errors-only',

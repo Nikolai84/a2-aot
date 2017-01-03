@@ -3,7 +3,7 @@ import {Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response,
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {startsWith} from 'lodash';
+import startsWith from 'lodash/startsWith';
 import {ENV_VARS} from '../../main/env_vars';
 
 @Injectable()

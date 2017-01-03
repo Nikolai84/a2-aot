@@ -10,6 +10,7 @@
     "mapRoot": "",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "outDir": "./build",
     "rootDir": ".",
     "skipLibCheck": true,

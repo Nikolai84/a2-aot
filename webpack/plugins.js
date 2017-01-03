@@ -7,33 +7,17 @@ let CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let autoprefixer = require('autoprefixer');
 let PostcssAssetsPlugin = require('postcss-assets-webpack-plugin');
-// let CompressionPlugin = require("compression-webpack-plugin");
+let CompressionPlugin = require("compression-webpack-plugin");
 let csswring = require('csswring');
-
-
 let path = require('path');
-let ENV = process.env.npm_lifecycle_event;
-let envMap =
-	{
-		'start': {
-			API_URL: 'http://dev.url',
-		  ENV: 'dev',
-    },
-		'build-prod': {
-			API_URL: 'http://prod.url',
-			ENV: 'prod',
-		},
-		'build-stage': {
-			API_URL: 'http://stage.url',
-			ENV: 'stage',
-		},
-		'build': {
-			API_URL: 'http://prod.url',
-			ENV: 'prod'
-		}
-};
-const ENV_CONFIG = envMap[ENV] || envMap['start'];
-module.exports = [
+const {ENV_CONFIG, notDevEnv, isStage, isDev, isProd} = require('./env-vars');
+console.log('notDevEnv', notDevEnv);
+console.log('isDev', isDev);
+console.log('ENV_CONFIG', ENV_CONFIG);
+
+const plugins = [];
+
+plugins.push(
 	new webpack.DefinePlugin({
 		// Environment helpers
 		'API_URL': JSON.stringify(ENV_CONFIG.API_URL),
@@ -41,13 +25,12 @@ module.exports = [
 			ENV: JSON.stringify(ENV_CONFIG.ENV)
 		}
 	}),
-  new webpack.ProgressPlugin(),
-  new webpack.ContextReplacementPlugin(
-    // The (\\|\/) piece accounts for path separators in *nix and Windows
-    /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-    path.join(process.cwd(), 'src')
-  ),
-	// Tslint configuration for webpack 2
+	new webpack.ProgressPlugin(),
+	new webpack.ContextReplacementPlugin(
+		// The (\\|\/) piece accounts for path separators in *nix and Windows
+		/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+		path.join(process.cwd(), 'src')
+	),
 	new webpack.LoaderOptionsPlugin({
 		options: {
 			/**
@@ -78,25 +61,6 @@ module.exports = [
 			]
 		}
 	}),
-	// new webpack.optimize.UglifyJsPlugin({ compress: {
-	// 	screw_ie8: true,
-	// 	warnings: false,
-	// 	conditionals: true,
-	// 	unused: true,
-	// 	comparisons: true,
-	// 	sequences: true,
-	// 	dead_code: true,
-	// 	evaluate: true,
-	// 	if_return: true,
-	// 	join_vars: true,
-	// 	negate_iife: false // we need this for lazy v8
-	// }, sourceMap: true, mangle: { keep_fnames: true }}),
-	// new CommonsChunkPlugin({
-	// 	name: ['vendor', 'polyfills']
-	// }),
-
-	// Inject script and link tags into html files
-	// Reference: https://github.com/ampedandwired/html-webpack-plugin
 	new HtmlWebpackPlugin({
 		template: './public/index.html',
 		chunksSortMode:  function (a, b) {  //alphabetical order - reverse
@@ -109,14 +73,36 @@ module.exports = [
 			return 0;
 		}
 	}),
+	new ExtractTextPlugin({filename: 'css/[name].[hash].css', disable: !notDevEnv})// disable if not prod
+);
 
-	new ExtractTextPlugin({filename: 'css/[name].[hash].css', disable: false}), // disable if is prod
-
-  new CopyWebpackPlugin([{
-	  // Copy assets from the public folder
-	  // Reference: https://github.com/kevlened/copy-webpack-plugin
-	  from: path.join(process.cwd(), 'src', 'public')
-  }
+if (notDevEnv) {
+	plugins.push(
+		new webpack.optimize.UglifyJsPlugin(
+			{
+				output: {
+					comments: false
+				},
+				compress: {
+					screw_ie8: true,
+					drop_console: isProd,
+					warnings: false,
+					conditionals: true,
+					unused: true,
+					comparisons: true,
+					sequences: true,
+					dead_code: true,
+					evaluate: true,
+					if_return: true,
+					join_vars: true,
+					negate_iife: false // we need this for lazy v8
+				}, sourceMap: true, mangle: { keep_fnames: true }}
+		),
+	new CopyWebpackPlugin([{
+		// Copy assets from the public folder
+		// Reference: https://github.com/kevlened/copy-webpack-plugin
+		from: path.join(process.cwd(), 'src', 'public')
+	}
 	]),
 	new PostcssAssetsPlugin({
 		test: /\.css$/,
@@ -126,4 +112,14 @@ module.exports = [
 			csswring({preservehacks: true, removeallcomments: true})
 		]
 	}),
-];
+	new CompressionPlugin({
+		asset: "[path].gz[query]",
+		algorithm: "gzip",
+		test: /\.js$|\.html$/,
+		threshold: 10240,
+		minRatio: 0.8
+	})
+	);
+}
+
+module.exports = plugins;
